@@ -4,10 +4,10 @@ module Scanners
   # Scanner for JavaScript.
   # 
   # Aliases: +ecmascript+, +ecma_script+, +javascript+
-  class JavaScript < Scanner
+  class CoffeeScript < Scanner
     
-    register_for :java_script
-    file_extension 'js'
+    register_for :coffee_script
+    file_extension 'coffee'
     
     # The actual JavaScript keywords.
     KEYWORDS = %w[
@@ -72,7 +72,7 @@ module Scanners
             value_expected = true if !value_expected && match.index(?\n)
             encoder.text_token match, :space
             
-          elsif match = scan(%r! \# [^\n\\]* (?: \#. [^\n\\]* )* !mx)
+          elsif match = scan(%r/\#.*?$/)
             value_expected = true
             encoder.text_token match, :comment
             

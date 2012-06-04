@@ -72,7 +72,7 @@ module Scanners
             value_expected = true if !value_expected && match.index(?\n)
             encoder.text_token match, :space
             
-          elsif match = scan(%r! // [^\n\\]* (?: \\. [^\n\\]* )* | /\* (?: .*? \*/ | .* ) !mx)
+          elsif match = scan(%r! \# [^\n\\]* (?: \#. [^\n\\]* )* !mx)
             value_expected = true
             encoder.text_token match, :comment
             
